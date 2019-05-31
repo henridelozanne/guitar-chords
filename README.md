@@ -1,6 +1,6 @@
-# word-maker
+# guitar-chords
 
-> Word Maker Project
+> Guitar Chords Project
 
 ## Build Setup
 
