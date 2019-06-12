@@ -3,7 +3,9 @@
         <router-link class="no-decoration" to="/"><div class="menu-item menu-item-text">Search chords</div></router-link>
         <router-link class="no-decoration" to="/quizz"><div class="menu-item menu-item-text" @click="goToQuizz">Quizz</div></router-link>
         <router-link class="no-decoration" to="/about"><div class="menu-item menu-item-text">About</div></router-link>
-        <div class="hamburger"><i class="menu-item el-icon-burger"></i></div>
+        <div class="hamburger menu-item">
+          <i class="el-icon-menu"></i>
+        </div>
       </div>
 </template>
 
