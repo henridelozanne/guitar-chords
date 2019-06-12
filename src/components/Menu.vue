@@ -1,10 +1,10 @@
 <template>
-  <ul class="menu">
-    <li>Explore chords</li>
-    <li>Explore songs</li>
-    <li>Quizz</li>
-    <li>Contact</li>
-  </ul>
+  <div class="menu">
+        <router-link class="no-decoration" to="/"><div class="menu-item menu-item-text">Search chords</div></router-link>
+        <router-link class="no-decoration" to="/quizz"><div class="menu-item menu-item-text" @click="goToQuizz">Quizz</div></router-link>
+        <router-link class="no-decoration" to="/about"><div class="menu-item menu-item-text">About</div></router-link>
+        <div class="hamburger"><i class="menu-item el-icon-burger"></i></div>
+      </div>
 </template>
 
 <script>
@@ -13,16 +13,16 @@ export default {
 }
 </script>
 
-<style scoped>
-ul {
-  list-style-type: none;
-}
+<style>
 
-li:not(:last-child) {
-  margin-bottom: 70px;
-}
+  .menu-item:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+  }
 
-.menu {
-  padding-inline-start: 0;
-}
+  .no-decoration {
+    text-decoration: none;
+    color: white;
+  }
+
 </style>

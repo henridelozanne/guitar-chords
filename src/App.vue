@@ -5,24 +5,9 @@
         <div class="branding-plain">Guitar Chords</div>
         <div class="branding-transient"></div>
       </div>
-      <div class="menu">
-        <div class="menu-item menu-item-text">Search chords</div>
-        <div class="menu-item menu-item-text ">Explore songs</div>
-        <div class="menu-item menu-item-text">Quizz</div>
-        <div class="menu-item menu-item-text">About</div>
-        <div class="hamburger"><i class="menu-item el-icon-burger"></i></div>
-      </div>
+      <app-menu></app-menu>
     </div>
-    <div class="main">
-      <!-- <router-view></router-view> -->
-      <div class="controls">
-         <app-chord-selects @searchChord="searchChord" @exactChordUpdated="updateExactChord" class="selects-ctn"/>
-      </div>
-      <div class="result">
-        <app-chord-diagram v-for="result in results" :key="result.chordName"
-                       :result="result" class="result-ctn"/>
-      </div>
-    </div>
+    <router-view></router-view>
     <div class="footer"></div>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
@@ -109,6 +94,7 @@ import Quizz from './components/Quizz.vue';
 import Menu from './components/Menu.vue';
 import ChordDiagram from '../src/components/ChordDiagram.vue';
 import ProgressBar from '../src/components/ProgressBar.vue';
+import SearchChords from '../src/components/SearchChords.vue';
 
 export default {
   name: "App",
@@ -121,6 +107,7 @@ export default {
     'app-quizz': Quizz,
     'app-menu': Menu,
     'app-progress-bar': ProgressBar,
+    'app-search-chords': SearchChords,
   },
   data: function() {
     return {
@@ -128,7 +115,6 @@ export default {
       correctAnswersQuantity: 0,
       showFourPossibilities: false,
       isExactChord: true,
-      results: [],
       quizzIsVisible: false,
       currentPage: 'search-chords',
       unitsQuantity: [
@@ -153,9 +139,6 @@ export default {
         this.showFinalScore();
       }
     },
-  },
-  created() {
-    this.searchChord('C');
   },
   computed: {
     totalGoodAnswers() {
@@ -220,28 +203,6 @@ export default {
     launchQuizz() {
       this.quizzIsVisible = !this.quizzIsVisible;
     },
-    searchChord(payload) {
-      // Reset results
-      const results = [];
-
-      const that = this;
-      let url;
-      if (this.isExactChord) {
-        url = `https://api.uberchord.com/v1/chords/${payload}`;
-      } else url = `https://api.uberchord.com/v1/chords?nameLike=${payload}`;
-      jQuery.getJSON(url, function(data){
-        console.log('data', data);
-        if (data.length === 0) {
-          that.showErrorMessage();
-          return;
-        }
-        // Set chord diagram
-        data.forEach((item) => {
-          results.push(item);
-        });
-        that.results = results;
-      });
-    },
     showErrorMessage() {
       this.$notify.error({
           message: 'No chord could be found',
@@ -259,9 +220,6 @@ export default {
       const answer = string1 + ' ' + string2 + ' ' + string3 + ' ' + string4 + ' ' + string5 + ' ' + string6;
       this.compareWithCorrect(answer);
       this.showFourPossibilities = false;
-    },
-    updateExactChord(payload) {
-      this.isExactChord = payload;
     },
   },
 };
