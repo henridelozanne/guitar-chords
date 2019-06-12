@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <div class="btn-ctn">
       <div class="btn-column">
         <button @click="handleRootClick('C')" class="note-btn" :class="{ 'btn-selected': root === 'C', 'hovered-btn': root !== 'C' }">C</button>
@@ -54,6 +54,46 @@
       <i class="fas fa-search search-icon"></i>
     </button>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  </div> -->
+
+  <div class="control-container">
+    <div class="first">
+      <div class="btn-ctn">
+          <button @click="handleRootClick('C')" class="note-btn" :class="{ 'btn-selected': root === 'C', 'hovered-btn': root !== 'C' }">C</button>
+          <button @click="handleRootClick('Db')" class="note-btn" :class="{ 'btn-selected': root === 'Db', 'hovered-btn': root !== 'Db'  }">C#/Db</button>
+          <button @click="handleRootClick('D')" class="note-btn" :class="{ 'btn-selected': root === 'D', 'hovered-btn': root !== 'D'  }">D</button>
+          <button @click="handleRootClick('Eb')" class="note-btn" :class="{ 'btn-selected': root === 'Eb', 'hovered-btn': root !== 'Eb'  }">D#/Eb</button>
+          <button @click="handleRootClick('E')" class="note-btn" :class="{ 'btn-selected': root === 'E', 'hovered-btn': root !== 'E'  }">E</button>
+          <button @click="handleRootClick('F')" class="note-btn" :class="{ 'btn-selected': root === 'F', 'hovered-btn': root !== 'F'  }">F</button>
+          <button @click="handleRootClick('Gb')" class="note-btn" :class="{ 'btn-selected': root === 'Gb', 'hovered-btn': root !== 'Gb'  }">F#/Gb</button>
+          <button @click="handleRootClick('G')" class="note-btn" :class="{ 'btn-selected': root === 'G', 'hovered-btn': root !== 'G'  }">G</button>
+          <button @click="handleRootClick('Ab')" class="note-btn" :class="{ 'btn-selected': root === 'Ab', 'hovered-btn': root !== 'Ab'  }">G#/Ab</button>
+          <button @click="handleRootClick('A')" class="note-btn" :class="{ 'btn-selected': root === 'A', 'hovered-btn': root !== 'A'  }">A</button>
+          <button @click="handleRootClick('Bb')" class="note-btn" :class="{ 'btn-selected': root === 'Bb', 'hovered-btn': root !== 'Bb'  }">A#/Bb</button>
+          <button @click="handleRootClick('B')" class="note-btn" :class="{ 'btn-selected': root === 'B', 'hovered-btn': root !== 'B'  }">B</button>
+      </div>
+    </div>
+    <div class="second four-spaces">
+        <div class="btn-ctn">
+            <button @click="handleQualityClick('')" class="note-btn" :class="{ 'btn-selected': quality === '', 'hovered-btn': quality !== '' }">Maj</button>
+            <button @click="handleQualityClick('maj7')" class="note-btn" :class="{ 'btn-selected': quality === 'maj7', 'hovered-btn': quality !== 'maj7' }">Maj7</button>
+            <button @click="handleQualityClick('7')" class="note-btn" :class="{ 'btn-selected': quality === '7', 'hovered-btn': quality !== '7' }">7</button>
+            <button @click="handleQualityClick('7b9')" class="note-btn" :class="{ 'btn-selected': quality === '7b9', 'hovered-btn': quality !== '7b9' }">7b9</button>
+            <button @click="handleQualityClick('m')" class="note-btn" :class="{ 'btn-selected': quality === 'm', 'hovered-btn': quality !== 'm' }">m</button>
+            <button @click="handleQualityClick('m7')" class="note-btn" :class="{ 'btn-selected': quality === 'm7', 'hovered-btn': quality !== 'm7' }">m7</button>
+            <button @click="handleQualityClick('6')" class="note-btn" :class="{ 'btn-selected': quality === '6', 'hovered-btn': quality !== '6' }">6</button>
+            <button @click="handleQualityClick('m6')" class="note-btn" :class="{ 'btn-selected': quality === 'm6', 'hovered-btn': quality !== 'm6' }">m6</button>
+            <button @click="handleQualityClick('11')" class="note-btn" :class="{ 'btn-selected': quality === '11', 'hovered-btn': quality !== '11' }">11</button>
+            <button @click="handleQualityClick('m11')" class="note-btn" :class="{ 'btn-selected': quality === 'm11', 'hovered-btn': quality !== 'm11' }">m11</button>
+            <button @click="handleQualityClick('69')" class="note-btn" :class="{ 'btn-selected': quality === '69', 'hovered-btn': quality !== '69' }">69</button>
+            <button @click="handleQualityClick('m69')" class="note-btn" :class="{ 'btn-selected': quality === 'm69', 'hovered-btn': quality !== 'm69' }">m69</button>
+            <button @click="handleQualityClick('dim')" class="note-btn" :class="{ 'btn-selected': quality === 'dim', 'hovered-btn': quality !== 'dim' }">dim</button>
+            <button @click="handleQualityClick('aug')" class="note-btn" :class="{ 'btn-selected': quality === 'aug', 'hovered-btn': quality !== 'aug' }">aug</button>
+            <button @click="handleQualityClick('sus2')" class="note-btn" :class="{ 'btn-selected': quality === 'sus2', 'hovered-btn': quality !== 'sus2' }">sus2</button>
+            <button @click="handleQualityClick('sus4')" class="note-btn" :class="{ 'btn-selected': quality === 'sus4', 'hovered-btn': quality !== 'sus4' }">sus4</button>
+        </div>
+    </div>
+  <link rel="stylesheet" type="text/css" href="all.css" media="screen" />
   </div>
 </template>
 
@@ -67,7 +107,7 @@
     },
     data() {
       return {
-        root: '',
+        root: 'C',
         possibleRoots: [
           { name: 'C', value: 'C'},
           { name: 'C#/Db', value: 'Db'},
@@ -82,7 +122,7 @@
           { name: 'A#/Bb', value: 'Bb'},
           { name: 'B', value: 'B'},
         ],
-        quality: undefined,
+        quality: '',
         possibleQualities: [
           { name: 'maj', value: '' },
           { name: 'maj7', value: 'maj7' },
@@ -129,24 +169,128 @@
     },
     methods: {
       searchChord() {
+
         const selectedChord = this.root + '_' + this.quality + '' + this.tension + '_' + this.bass;
         this.$emit('searchChord', selectedChord);
       },
       handleRootClick(note) {
+        console.log('yy')
         this.root = note;
+        this.searchChord();
       },
       handleQualityClick(quality) {
         this.quality = quality;
-      },
-      updateExactChord(payload) {
-        this.$emit('exactChordUpdated', payload);
+        this.searchChord();
       },
     },
   };
 </script>
 
+
 <style>
-  .search-button {
+
+.control-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: "Open sans"
+}
+
+.first {
+  /* background: green; */
+  height: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.second {
+  /* background: blue; */
+  height: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  /* background: rgb(225, 224, 224); */
+  align-content: center;
+}
+
+.third{
+  /* background: pink; */
+  flex-grow: 1;
+  /* height: 250px; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.third div {
+  /* color: white; */
+  font-family: "Open sans";
+  font-size: 0.85em;
+}
+
+.third-small {
+  display: none;
+  background: pink;
+  height: 40px;
+}
+
+.btn-ctn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+}
+
+button {
+  background: none;
+  text-align: center;
+  outline: none;
+  /* border-width: 0; */
+}
+
+.btn-ctn button {
+  padding: 10px 30px;
+  flex-basis: 33.3%;
+  font-family: "Open sans";
+  font-size: 13px;
+  border-radius: 10px;
+  min-width: 81px;
+}
+
+.four-spaces button{
+  flex-basis: 25%;
+  font-family: "Open sans";
+  font-size: 13px;
+}
+
+.btn-selected {
+    background: rgb(198, 196, 196);
+    color: rgb(255, 255, 255);
+}
+
+.hovered-btn:hover {
+    cursor: pointer;
+    background: #d0f3f1;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-ctn button {
+    /* padding: 0 30px !important; */
+    flex-basis: 25%;
+  }
+
+  .four-spaces button {
+    /* padding: auto 30px !important; */
+    flex-basis: 16.66%;
+  }
+}
+
+  /* .search-button {
     height: 176px;
     width: 80px;
     font-family: 'Exo';
@@ -225,5 +369,5 @@
 
   .search-icon {
     font-size: 2em;
-  }
+  } */
 </style>

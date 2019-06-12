@@ -1,5 +1,34 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
+    <div class="navbar">
+      <div class="branding">
+        <div class="branding-plain">Guitar Chords</div>
+        <div class="branding-transient"></div>
+      </div>
+      <div class="menu">
+        <div class="menu-item menu-item-text">Search chords</div>
+        <div class="menu-item menu-item-text ">Explore songs</div>
+        <div class="menu-item menu-item-text">Quizz</div>
+        <div class="menu-item menu-item-text">About</div>
+        <div class="hamburger"><i class="menu-item el-icon-burger"></i></div>
+      </div>
+    </div>
+    <div class="main">
+      <!-- <router-view></router-view> -->
+      <div class="controls">
+         <app-chord-selects @searchChord="searchChord" @exactChordUpdated="updateExactChord" class="selects-ctn"/>
+      </div>
+      <div class="result">
+        <app-chord-diagram v-for="result in results" :key="result.chordName"
+                       :result="result" class="result-ctn"/>
+      </div>
+    </div>
+    <div class="footer"></div>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+
+  </div>
+  <!-- <div id="app">
     <div class="big-container">
       <div class="left">
         <div class="branding">
@@ -23,13 +52,13 @@
         </div>
       </div>
       <div class="right">
-        <div v-if="currentPage === 'search-chords'" class="selects">
-          <app-chord-selects @searchChord="searchChord" @exactChordUpdated="updateExactChord" class="selects-ctn"/>
-        </div>
         <div v-if="currentPage === 'quizz'" class="selects progress-bar-ctn">
           <app-progress-bar :unitsQuantity="unitsQuantity"/>
         </div>
         <div v-if="currentPage === 'search-chords'" class="results">
+          <div v-if="currentPage === 'search-chords'" class="selects">
+            <app-chord-selects @searchChord="searchChord" @exactChordUpdated="updateExactChord" class="selects-ctn"/>
+          </div>
           <app-chord-diagram v-for="result in results" :key="result.chordName"
                        :result="result" class="result-ctn"/>
         </div>
@@ -62,10 +91,13 @@
 
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
-  </div>
+  </div> -->
+
 </template>
 
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
 
 <script>
 import jQuery from 'jQuery';
@@ -121,6 +153,9 @@ export default {
         this.showFinalScore();
       }
     },
+  },
+  created() {
+    this.searchChord('C');
   },
   computed: {
     totalGoodAnswers() {
@@ -233,11 +268,171 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Baloo|Permanent+Marker|Exo|Megrim|Yantramanav|Syncopate&display=swap');
+
+   @import url('https://fonts.googleapis.com/css?family=Baloo|Permanent+Marker|Exo|Megrim|Yantramanav|Syncopate&display=swap');
 
   body {
-    background-image: linear-gradient(-100deg, rgba(149, 207, 195, 0.75), rgb(191, 230, 240, 0.75));
     font-family: 'Exo';
+    margin: 0;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .navbar {
+    background: rgb(46, 64, 109);
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    color: white;
+  }
+
+  .branding {
+    flex-basis: 330px;
+    font-family: 'Tomato Soup';
+    font-size: 70px;
+    display: flex;
+  }
+
+  .branding-plain {
+    flex-basis: 70%;
+    /* background: yellow; */
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .branding-transient {
+    flex-basis: 30%;
+    background-image: linear-gradient(90deg, rgb(229, 229, 188, 0.5), rgb(46, 64, 109));
+    opacity: 0.25;
+  }
+
+  .menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: garamond;
+  }
+
+  .menu-item {
+    /* background: pink; */
+    padding: 15px;
+    margin-right: 50px;
+    font-family: 'Open sans';
+  }
+
+  .main {
+    /* background: green; */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .controls {
+    flex-basis: 33%;
+    background-color: rgba(238, 238, 238, 0.4);
+  }
+
+  .result {
+    flex-basis: 67%;
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer {
+    background: rgb(46, 64, 109);
+    height: 100px;
+  }
+
+  .result-ctn {
+      display: flex;
+      /* width: 1%; */
+      /* align-items: center; */
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+    }
+
+  @media screen and (max-width: 1200px) {
+    .menu {
+      justify-content: space-evenly;
+    }
+
+    .menu-item {
+      margin-right: 0;
+    }
+
+    .controls {
+      flex-basis: 50%;
+    }
+
+    .result {
+      flex-basis: 50%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .navbar, .footer {
+      height: 50px;
+    }
+
+    .branding {
+      font-size: 30px;
+    }
+
+    .menu {
+      justify-content: flex-end;
+    }
+
+    .menu-item {
+      margin-right: 30px;
+    }
+
+    .menu-item-text {
+      display: none;
+    }
+
+    .hamburger {
+      display: block;
+    }
+
+    .main {
+      flex-direction: column-reverse;
+    }
+
+    .controls {
+      flex-basis: 50%;
+    }
+
+    .result {
+      flex-basis: 50%;
+    }
+
+    .result-ctn {
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-grow: 1;
+      /* align-items: center; */
+    }
+
+  }
+
+/*
+  body {
+    font-family: 'Exo';
+    margin: 0;
   }
 
   .solo-result-ctn {
@@ -278,8 +473,9 @@ export default {
 
   .right {
     width: 79%;
-    height: 812px;
+    height: 130px;
     float: left;
+    background-image: linear-gradient(-100deg, rgb(28, 83, 72), rgba(23, 62, 72));
   }
 
   .final-score-modal {
@@ -319,8 +515,6 @@ export default {
 
   .branding p:hover {
     cursor: pointer;
-    -ms-transform: rotate(20deg); /* IE 9 */
-    -webkit-transform: rotate(20deg); /* Safari */
     transform: rotate(-4deg);
   }
 
@@ -433,5 +627,5 @@ export default {
     color: white;
     box-shadow: 0 0 55px #a5782f inset;
     font-size: 1.01em;
-  }
+  } */
 </style>

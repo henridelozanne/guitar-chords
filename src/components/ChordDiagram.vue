@@ -1,5 +1,6 @@
 <template>
-  <el-card class="diagram-container">
+<div>
+ <el-card class="diagram-container">
     <div class="hover-detector" @mouseover="showFingering" @mouseleave="hideFingering">
       <h2 v-if="!quizz && chordName" class="chord-name">{{ chordName }} :</h2>
       <h2 v-else class="chord-name"> {{currentQuestionChord}} ?</h2>
@@ -18,6 +19,155 @@
 
     </div>
   </el-card>
+  <div class="play-icon-ctn" @click="playChord">
+    <img src="../assets/volume.svg" alt="">
+  </div>
+  <audio id="0-0">
+    <source src="../assets/notes/0-0.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="0-1">
+    <source src="../assets/notes/0-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="0-2">
+    <source src="../assets/notes/0-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="0-3">
+    <source src="../assets/notes/0-3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="0-4">
+    <source src="../assets/notes/0-4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="0-5">
+    <source src="../assets/notes/0-5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="1-0">
+    <source src="../assets/notes/1-0.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="1-1">
+    <source src="../assets/notes/1-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="1-2">
+    <source src="../assets/notes/1-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="1-3">
+    <source src="../assets/notes/1-3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="1-4">
+    <source src="../assets/notes/1-4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="1-5">
+    <source src="../assets/notes/1-5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="2-0">
+    <source src="../assets/notes/2-0.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="2-1">
+    <source src="../assets/notes/2-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="2-2">
+    <source src="../assets/notes/2-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="2-3">
+    <source src="../assets/notes/2-3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="2-4">
+    <source src="../assets/notes/2-4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="2-5">
+    <source src="../assets/notes/2-5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="3-0">
+    <source src="../assets/notes/3-0.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="3-1">
+    <source src="../assets/notes/3-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="3-2">
+    <source src="../assets/notes/3-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="3-3">
+    <source src="../assets/notes/3-3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="3-4">
+    <source src="../assets/notes/3-4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="3-5">
+    <source src="../assets/notes/3-5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="4-0">
+    <source src="../assets/notes/4-0.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="4-1">
+    <source src="../assets/notes/4-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="4-2">
+    <source src="../assets/notes/4-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="4-3">
+    <source src="../assets/notes/4-3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="4-4">
+    <source src="../assets/notes/4-4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="4-5">
+    <source src="../assets/notes/4-5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="5-0">
+    <source src="../assets/notes/5-0.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="5-1">
+    <source src="../assets/notes/5-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="5-2">
+    <source src="../assets/notes/5-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="5-3">
+    <source src="../assets/notes/5-3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="5-4">
+    <source src="../assets/notes/5-4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="5-5">
+    <source src="../assets/notes/5-5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
 </template>
 
 <script>
@@ -98,6 +248,20 @@
       setQuestionChord() {
         this.currentQuestionChord = this.possibleRoots[Math.floor(Math.random()*this.possibleRoots.length)];
       },
+      playChord() {
+        console.log('playChord', this.cleanDiagram);
+        let myArray = [];
+        this.cleanDiagram.forEach((string, index) => {
+          if (string !== 'X') {
+            myArray.push(`${index}-${string}`)
+          }
+        })
+        console.log('myArray après = ', myArray);
+        let myTimeout = 500;
+        myArray.forEach((elem) => {
+          document.getElementById(elem).play();
+        });
+      },
       resetClickedFrets() {
         this.$refs.string1.clickedFret = undefined;
         this.$refs.string2.clickedFret = undefined;
@@ -124,13 +288,42 @@
     background: rgb(255, 255, 255);
     text-align: center;
     font-family: 'Exo';
-    padding: 10px;
-    padding-bottom: 24px;
+    /* padding: 10px; */
+    /* padding-bottom: 24px; */
   }
 
   .el-card__body {
     /* remove Element's padding */
     padding: 0 !important;
+  }
+
+  .play-icon-ctn {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(242, 242, 240);
+    border-radius: 50%;
+  }
+
+  .play-icon-ctn:hover {
+    cursor: pointer;
+    background-image: radial-gradient(rgb(195, 247, 192), rgb(123, 240, 203));
+  }
+
+  .play-icon-ctn img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .play-icon-ctn i {
+    font-size: 30px;
+  }
+
+  @media screen and (max-width:768px) {
+      .guitar-neck {
+        display: flex;
+      }
   }
 
   hr {
@@ -142,6 +335,8 @@
   .chord-name {
     font-family: 'Exo';
     white-space: nowrap;
+    /* margin: 0 auto; */
+    margin-top: 5px;
   }
 
   .string-ctn {
