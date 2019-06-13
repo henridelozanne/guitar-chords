@@ -295,12 +295,12 @@ export default {
     display: none;
   }
 
-  .controls {
+  .left-panel {
     flex-basis: 33%;
     background-color: rgba(238, 238, 238, 0.4);
   }
 
-  .result {
+  .right-panel {
     flex-basis: 67%;
     background: rgb(255, 255, 255);
     display: flex;
@@ -332,11 +332,11 @@ export default {
       margin-right: 0;
     }
 
-    .controls {
+    .left-panel {
       flex-basis: 50%;
     }
 
-    .result {
+    .right-panel {
       flex-basis: 50%;
     }
   }
@@ -370,11 +370,11 @@ export default {
       flex-direction: column-reverse;
     }
 
-    .controls {
+    .left-panel {
       flex-basis: 50%;
     }
 
-    .result {
+    .right-panel {
       flex-basis: 50%;
     }
 

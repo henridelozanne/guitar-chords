@@ -1,10 +1,10 @@
 <template>
   <div class="main">
       <!-- <router-view></router-view> -->
-      <div class="controls">
+      <div class="left-panel">
          <app-chord-selects @searchChord="searchChord" class="selects-ctn"/>
       </div>
-      <div class="result">
+      <div class="right-panel">
         <app-chord-diagram v-for="result in results" :key="result.chordName"
                        :result="result" class="result-ctn"/>
       </div>
