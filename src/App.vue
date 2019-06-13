@@ -8,7 +8,7 @@
       <app-menu></app-menu>
     </div>
     <router-view></router-view>
-    <div class="footer"></div>
+    <app-footer />
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
 
@@ -95,6 +95,7 @@ import Menu from './components/Menu.vue';
 import ChordDiagram from '../src/components/ChordDiagram.vue';
 import ProgressBar from '../src/components/ProgressBar.vue';
 import SearchChords from '../src/components/SearchChords.vue';
+import Footer from '../src/components/Footer.vue';
 
 export default {
   name: "App",
@@ -108,6 +109,7 @@ export default {
     'app-menu': Menu,
     'app-progress-bar': ProgressBar,
     'app-search-chords': SearchChords,
+    'app-footer': Footer,
   },
   data: function() {
     return {
