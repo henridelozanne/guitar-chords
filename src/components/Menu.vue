@@ -1,15 +1,17 @@
 <template>
   <div class="menu">
     <router-link class="no-decoration" to="/"><div class="menu-item menu-item-text">Search chords</div></router-link>
+    <router-link class="no-decoration" to="/tuner"><div class="menu-item menu-item-text">Guitar tuner</div></router-link>
     <router-link class="no-decoration" to="/quizz"><div class="menu-item menu-item-text">Quizz</div></router-link>
     <router-link class="no-decoration" to="/about"><div class="menu-item menu-item-text">About</div></router-link>
     <div class="hamburger menu-item" @click="toggleMenuModal">
       <i class="el-icon-menu"></i>
     </div>
     <div class="modal" v-if="menuModalIsVisible">
-      <div class="modal-item search-chords-item" @click="goTo('/')">Search chords</div>
-      <div class="modal-item quizz-item" @click="goTo('/quizz')">Quizz</div>
-      <div class="modal-item about-item" @click="goTo('/about')">About</div>
+      <div class="modal-item" @click="goTo('/')">Search chords</div>
+      <div class="modal-item" @click="goTo('/tuner')">Guitar tuner</div>
+      <div class="modal-item" @click="goTo('/quizz')">Quizz</div>
+      <div class="modal-item" @click="goTo('/about')">About</div>
     </div>
     <div v-if="menuModalIsVisible" @click="menuModalIsVisible=false" class="modal-close-icon-ctn">
       X
@@ -52,7 +54,7 @@ export default {
   }
 
   .modal {
-    opacity: 0.9;
+    opacity: 0.97;
     z-index: 2000;
     position: absolute;
     top: 0;
