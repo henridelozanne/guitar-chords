@@ -36,7 +36,6 @@ export default {
 
       const that = this;
       jQuery.getJSON(`https://api.uberchord.com/v1/chords/${payload}`, function(data){
-        console.log('data', data);
         if (data.length === 0) {
           that.showErrorMessage();
           return;

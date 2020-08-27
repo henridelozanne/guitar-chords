@@ -7,15 +7,17 @@
       <h2 v-if="showFourPossibilities">{{currentQuestionChord}} ?</h2>
 
       <div class="guitar-neck">
-        <app-g-string ref="string1" class="string-ctn" :stringValue="cleanDiagram[0]" :fingeringValue="cleanFingering[0]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'"/>
-        <app-g-string ref="string2" class="string-ctn" :stringValue="cleanDiagram[1]" :fingeringValue="cleanFingering[1]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'"/>
-        <app-g-string ref="string3" class="string-ctn" :stringValue="cleanDiagram[2]" :fingeringValue="cleanFingering[2]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'"/>
-        <app-g-string ref="string4" class="string-ctn" :stringValue="cleanDiagram[3]" :fingeringValue="cleanFingering[3]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'"/>
-        <app-g-string ref="string5" class="string-ctn" :stringValue="cleanDiagram[4]" :fingeringValue="cleanFingering[4]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'"/>
-        <app-g-string ref="string6" class="string-ctn" :stringValue="cleanDiagram[5]" :fingeringValue="cleanFingering[5]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'"/>
+        <app-g-string ref="string1" class="string-ctn" :stringValue="cleanDiagram[0]" :fingeringValue="cleanFingering[0]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+        <app-g-string ref="string2" class="string-ctn" :stringValue="cleanDiagram[1]" :fingeringValue="cleanFingering[1]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+        <app-g-string ref="string3" class="string-ctn" :stringValue="cleanDiagram[2]" :fingeringValue="cleanFingering[2]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+        <app-g-string ref="string4" class="string-ctn" :stringValue="cleanDiagram[3]" :fingeringValue="cleanFingering[3]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+        <app-g-string ref="string5" class="string-ctn" :stringValue="cleanDiagram[4]" :fingeringValue="cleanFingering[4]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+        <app-g-string ref="string6" class="string-ctn" :stringValue="cleanDiagram[5]" :fingeringValue="cleanFingering[5]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+
+        <div v-if="oneNoteAbove" class="fret-position">
+          ------ {{ aboveBase }}<sup>{{aboveBase === 3 ? 'rd' : 'th'}}</sup> fret ------
+        </div>
       </div>
-
-
 
     </div>
   </el-card>
@@ -211,15 +213,29 @@
           'Bb',
           'B',
         ],
+        aboveBase: 0
       };
     },
     components: {
       'app-g-string': GString,
     },
     computed: {
+      oneNoteAbove() {
+        return this.result.strings.split(' ').some((element) => parseInt(element, 10) > 5);
+      },
       cleanDiagram() {
         if (!this.quizz && this.result) {
-          return this.result.strings.split(' ');
+          const splittedString = this.result.strings.split(' ');
+          const cleanNumberValues = splittedString.map((el) => {
+              if (Number.isInteger(parseInt(el, 10))) {
+                return parseInt(el, 10);
+              }
+              return 999;
+            });
+          if (this.oneNoteAbove) {
+            this.aboveBase = Math.min(...cleanNumberValues);
+          }
+          return splittedString;
         } return '';
       },
       cleanFingering() {
@@ -249,14 +265,12 @@
         this.currentQuestionChord = this.possibleRoots[Math.floor(Math.random()*this.possibleRoots.length)];
       },
       playChord() {
-        console.log('playChord', this.cleanDiagram);
         let myArray = [];
         this.cleanDiagram.forEach((string, index) => {
           if (string !== 'X') {
             myArray.push(`${index}-${string}`)
           }
         })
-        console.log('myArray après = ', myArray);
         let myTimeout = 500;
         myArray.forEach((elem) => {
           document.getElementById(elem).play();
@@ -295,6 +309,21 @@
   .el-card__body {
     /* remove Element's padding */
     padding: 0 !important;
+  }
+
+  .guitar-neck {
+    position: relative;
+  }
+
+  .fret-position {
+    position: absolute;
+    top: 27px;
+    font-style: italic;
+    font-size: 12px;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: rgb(87, 55, 55);
   }
 
   .play-icon-ctn {

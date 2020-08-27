@@ -174,7 +174,6 @@
         this.$emit('searchChord', selectedChord);
       },
       handleRootClick(note) {
-        console.log('yy')
         this.root = note;
         this.searchChord();
       },
