@@ -4,7 +4,7 @@
     <div class="hover-detector" @mouseover="showFingering" @mouseleave="hideFingering">
       <h2 v-if="!quizz && chordName" class="chord-name">{{ chordName }} :</h2>
       <h2 v-else class="chord-name"> {{currentQuestionChord}} ?</h2>
-      <h2 v-if="showFourPossibilities">{{currentQuestionChord}} ?</h2>
+      <!-- <h2 v-if="showFourPossibilities">{{currentQuestionChord}} ?</h2> -->
 
       <div class="guitar-neck">
         <app-g-string ref="string1" class="string-ctn" :stringValue="cleanDiagram[0]" :fingeringValue="cleanFingering[0]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
@@ -333,6 +333,7 @@
     align-items: center;
     background: rgb(242, 242, 240);
     border-radius: 50%;
+    margin-top: 50px;
   }
 
   .play-icon-ctn:hover {

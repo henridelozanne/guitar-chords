@@ -308,6 +308,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   .footer {
@@ -320,7 +321,7 @@ export default {
       /* width: 1%; */
       /* align-items: center; */
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
       height: 100%;
     }
