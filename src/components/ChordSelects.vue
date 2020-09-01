@@ -192,7 +192,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: "Open sans"
+  font-family: "Exo"
 }
 
 .first {
@@ -255,20 +255,18 @@ button {
 .btn-ctn button {
   padding: 10px 30px;
   flex-basis: 33.3%;
-  font-family: "Open sans";
   font-size: 13px;
-  border-radius: 10px;
+  border-radius: 25px;
   min-width: 81px;
 }
 
 .four-spaces button{
   flex-basis: 25%;
-  font-family: "Open sans";
   font-size: 13px;
 }
 
 .btn-selected {
-    background: rgb(198, 196, 196);
+    background: rgb(198, 196, 196) !important;
     color: rgb(255, 255, 255);
 }
 
@@ -287,6 +285,12 @@ button {
     /* padding: auto 30px !important; */
     flex-basis: 16.66%;
   }
+}
+
+.note-btn {
+  background: white;
+  border-width: 1px;
+  border-color: rgb(223, 223, 223);
 }
 
   /* .search-button {
@@ -316,14 +320,6 @@ button {
     flex-direction: column;
     min-width: 79px;
     padding-top: 10px;
-  }
-
-  .note-btn {
-    height: 37px;
-    width: 75px;
-    margin: auto;
-    font-family: 'Exo';
-    border-radius: 5px;
   }
 
   .note-btn:not(:last-child) {

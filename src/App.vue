@@ -283,7 +283,7 @@ export default {
     /* background: pink; */
     padding: 15px;
     margin-right: 50px;
-    font-family: 'Open sans';
+    font-family: 'Exo';
   }
 
   .main {
