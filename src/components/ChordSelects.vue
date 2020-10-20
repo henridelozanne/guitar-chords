@@ -168,7 +168,6 @@
   gap: 0 10px;
   align-items: center;
   height: 100%;
-  
 }
 
 .grid-root {
@@ -187,24 +186,24 @@ button {
 
 .btn-ctn button {
   padding: 10px 30px;
-  font-size: 14px;
+  font-size: 15px;
   border-radius: 10px;
   min-width: 81px;
 }
 
 .four-spaces button{
   flex-basis: 25%;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .btn-selected {
-    background: rgb(198, 196, 196) !important;
-    color: rgb(255, 255, 255);
+  background: rgb(213, 217, 218) !important;
+  color: rgb(255, 255, 255);
 }
 
 .hovered-btn:hover {
-    cursor: pointer;
-    background: #d0f3f1;
+  background: rgb(213, 217, 218) !important;
+  color: rgb(255, 255, 255);
 }
 
 @media screen and (max-width: 768px) {
@@ -219,9 +218,12 @@ button {
 
 .note-btn {
   background-color: white;
-  border-width: 1px;
-  border-color: rgb(223, 223, 223);
-  transition-property: background-color;
-  transition-duration: .35s;
+  border: 0;
+  font-weight: normal;
+  transition-property: all;
+  transition-duration: 0.3s;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+  font-family: 'Josefin Sans', sans-serif;
+  cursor: pointer;
 }
 </style>
