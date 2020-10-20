@@ -1,14 +1,7 @@
 <template>
   <div id="app" class="app">
-    <div class="navbar">
-      <div class="branding">
-        <div class="branding-plain">Guitar Chords</div>
-        <div class="branding-transient"></div>
-      </div>
-      <app-menu></app-menu>
-    </div>
+    <app-navbar />
     <router-view></router-view>
-    <app-footer />
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
 
@@ -24,11 +17,10 @@ import ChordSelects from './components/ChordSelects.vue';
 import ExactChordRadio from './components/ExactChordRadio.vue';
 import ResultSection from './components/ResultSection.vue';
 import Quizz from './components/Quizz.vue';
-import Menu from './components/Menu.vue';
 import ChordDiagram from '../src/components/ChordDiagram.vue';
 import ProgressBar from '../src/components/ProgressBar.vue';
 import SearchChords from '../src/components/SearchChords.vue';
-import Footer from '../src/components/Footer.vue';
+import Navbar from '../src/components/Navbar'
 
 export default {
   name: "App",
@@ -39,10 +31,9 @@ export default {
     'app-result-section': ResultSection,
     'app-chord-diagram': ChordDiagram,
     'app-quizz': Quizz,
-    'app-menu': Menu,
     'app-progress-bar': ProgressBar,
     'app-search-chords': SearchChords,
-    'app-footer': Footer,
+    'app-navbar': Navbar
   },
   data: function() {
     return {
@@ -173,50 +164,6 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100vh;
-  }
-
-  .navbar {
-    background: rgb(46, 64, 109);
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    color: white;
-  }
-
-  .branding {
-    flex-basis: 330px;
-    font-family: 'Tomato Soup';
-    font-size: 70px;
-    display: flex;
-  }
-
-  .branding-plain {
-    flex-basis: 70%;
-    /* background: yellow; */
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .branding-transient {
-    flex-basis: 30%;
-    background-image: linear-gradient(90deg, rgb(229, 229, 188, 0.5), rgb(46, 64, 109));
-    opacity: 0.25;
-  }
-
-  .menu {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-family: garamond;
-  }
-
-  .menu-item {
-    /* background: pink; */
-    padding: 15px;
-    margin-right: 50px;
-    font-family: 'Exo';
   }
 
   .main {

@@ -45,6 +45,21 @@ export default {
 
 <style>
 
+.menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: garamond;
+  }
+
+  .menu-item {
+    /* background: pink; */
+    padding: 15px;
+    margin-right: 50px;
+    font-family: 'Exo';
+  }
+
   .menu-item:hover {
     cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
