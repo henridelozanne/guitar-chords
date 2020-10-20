@@ -1,7 +1,9 @@
 <template>
   <div class="navbar">
     <div class="branding">
-      <div class="branding-plain">Guitar Chords</div>
+      <router-link to="/">
+        <div class="branding-plain">Guitar Chords</div>
+      </router-link>
       <div class="branding-transient"></div>
     </div>
     <app-menu></app-menu>

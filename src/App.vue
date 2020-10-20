@@ -152,321 +152,120 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Baloo|Permanent+Marker|Exo|Megrim|Yantramanav|Syncopate&display=swap');
 
-   @import url('https://fonts.googleapis.com/css?family=Baloo|Permanent+Marker|Exo|Megrim|Yantramanav|Syncopate&display=swap');
+body {
+  font-family: 'Exo';
+  margin: 0;
+}
 
-  body {
-    font-family: 'Exo';
-    margin: 0;
-  }
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-  .app {
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.hamburger {
+  display: none;
+}
+
+.left-panel {
+  flex-basis: 33%;
+  background-color: rgba(238, 238, 238, 0.4);
+}
+
+.right-panel {
+  flex-basis: 67%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.footer {
+  background: rgb(46, 64, 109);
+  height: 100px;
+}
+
+.result-ctn {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 
-  .main {
-    /* background: green; */
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
+@media screen and (max-width: 1200px) {
+  .menu {
+    justify-content: space-evenly;
   }
 
-  .hamburger {
-    display: none;
+  .menu-item {
+    margin-right: 0;
   }
 
   .left-panel {
-    flex-basis: 33%;
-    background-color: rgba(238, 238, 238, 0.4);
+    flex-basis: 50%;
   }
 
   .right-panel {
-    flex-basis: 67%;
-    background: rgb(255, 255, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    flex-basis: 50%;
   }
+}
 
-  .footer {
-    background: rgb(46, 64, 109);
-    height: 100px;
-  }
-
-  .result-ctn {
-      display: flex;
-      /* width: 1%; */
-      /* align-items: center; */
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
-  @media screen and (max-width: 1200px) {
-    .menu {
-      justify-content: space-evenly;
-    }
-
-    .menu-item {
-      margin-right: 0;
-    }
-
-    .left-panel {
-      flex-basis: 50%;
-    }
-
-    .right-panel {
-      flex-basis: 50%;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .navbar, .footer {
-      height: 50px;
-    }
-
-    .branding {
-      font-size: 30px;
-    }
-
-    .menu {
-      justify-content: flex-end;
-    }
-
-    .menu-item {
-      margin-right: 30px;
-    }
-
-    .menu-item-text {
-      display: none;
-    }
-
-    .hamburger {
-      display: block;
-    }
-
-    .main {
-      flex-direction: column-reverse;
-    }
-
-    .left-panel {
-      flex-basis: 50%;
-    }
-
-    .right-panel {
-      flex-basis: 50%;
-    }
-
-    .result-ctn {
-      flex-direction: row;
-      justify-content: space-evenly;
-      flex-grow: 1;
-      /* align-items: center; */
-    }
-
-  }
-
-/*
-  body {
-    font-family: 'Exo';
-    margin: 0;
-  }
-
-  .solo-result-ctn {
-    margin-top: 40px;
-  }
-
-  .big-container {
-    width: 100%;
-    height: 812px;
-  }
-
-  .your-score {
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-
-  .chord-diagram-ctn {
-    position: relative;
-    text-align: center;
-  }
-
-  .quizz-btns {
-    display: block;
-    margin: auto;
-  }
-
-  .left {
-    width: 21%;
-    height: 812px;
-    overflow: hidden;
-    float: left;
-  }
-
-  .new-game-btn {
-    background: rgb(108, 209, 108);
-    padding: 30px;
-  }
-
-  .right {
-    width: 79%;
-    height: 130px;
-    float: left;
-    background-image: linear-gradient(-100deg, rgb(28, 83, 72), rgba(23, 62, 72));
-  }
-
-  .final-score-modal {
-    width: 100%;
-    height: 100%;
-    background: rgb(0, 0, 0, 0.6);
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .progress-bar-ctn {
-    border: black solid 1px;
+@media screen and (max-width: 768px) {
+  .navbar, .footer {
+    height: 50px;
   }
 
   .branding {
-    height: 200px;
-    line-height: 200px;
-    text-align: center;
-    font-family: 'Tomato Soup';
-    font-size: 96px;
-    color: rgb(250, 250, 240);
-    background: rgb(22, 22, 60);
-  }
-
-  .is-selected-menu {
-    outline: 6px solid rgb(218, 201, 176, 0.4);
-    outline-offset: -6px;
-  }
-
-  .branding p {
-    margin-top: 0;
-    background: -webkit-linear-gradient(rgb(216, 213, 213), rgb(255, 187, 105));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .branding p:hover {
-    cursor: pointer;
-    transform: rotate(-4deg);
+    font-size: 30px;
   }
 
   .menu {
-    background: rgb(250, 250, 240, 0.9);
-    height: 612px;
-    overflow: hidden;
-    text-align: center;
-    position: relative;
+    justify-content: flex-end;
   }
 
-  .menu-list {
-    list-style-type: none;
-    padding-left: 0;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    width: 100%;
-    letter-spacing: 3px;
-    font-size: 0.8em;
+  .menu-item {
+    margin-right: 30px;
   }
 
-  .menu-list li {
-    padding: 30px 0;
+  .menu-item-text {
+    display: none;
   }
 
-  .menu-list li:hover {
-    background: #c9e8eb;
-    cursor: pointer;
+  .hamburger {
+    display: block;
   }
 
-  .modal-content {
-    width: 500px;
-    height: 260px;
-    background: rgb(250, 250, 240, 0.9);
-    margin: auto;
-    margin-top: 120px;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-    padding: 30px;
-    opacity: 1;
+  .main {
+    flex-direction: column-reverse;
   }
 
-  .modal-close-btn {
-    position: absolute;
-    top: 115px;
-    left: 1097px;
-    background-color: rgb(250, 250, 240);
-    z-index: 2;
-    padding-top: 6px;
-    height: 20px;
-    width: 28px;
-    font-size: 0.7em;
-    text-align: center;
-    border-radius: 30%;
-    border: rgb(150, 150, 150) solid 1px;
-    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.1);
+  .left-panel {
+    flex-basis: 50%;
   }
 
-  .modal-close-btn:hover {
-    background-color: rgb(162, 158, 149);
-    color: rgb(250, 250, 240);
-    cursor: pointer;
-  }
-
-  .selects {
-    height: 178px;
-    background: rgb(250, 250, 240, 0.9);
-    background-position: center;
-    overflow: hidden;
-    padding: 10px 0;
-    width: 100%;
-  }
-
-  .results {
-    height: 612px;
-    padding: 30px;
+  .right-panel {
+    flex-basis: 50%;
   }
 
   .result-ctn {
-    margin-bottom: 20px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-grow: 1;
   }
+}
 
-  .result-ctn:not(:last-child) {
-    margin-right: 20px;
-  }
-
-  .selects-ctn {
-    float: left;
-  }
-
-  li p {
-    display: inline-block;
-  }
-
-  .submit-btn {
-    padding: 27px;
-    background: rgb(114, 198, 114);
-    color: white;
-    box-shadow: 0 0 55px #125006 inset;
-    font-size: 1.01em;
-  }
-
-  .four-possibilities-btn {
-    padding: 27px;
-    background: rgb(207, 196, 98);
-    color: white;
-    box-shadow: 0 0 55px #a5782f inset;
-    font-size: 1.01em;
-  } */
+a {
+  color: white;
+  text-decoration: none;
+}
 </style>
