@@ -31,9 +31,9 @@ export default {
 .control-panel {
   position: absolute;
   transform: translateY(-50%);
-  top: 20%;
+  top: 100px;
   right: 50px;
-  background: rgba(230, 230, 230, 0.6);
+  background-color: rgba(230, 230, 230, 0.6);
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -41,6 +41,12 @@ export default {
   align-items: center;
   padding: 15px;
   cursor: pointer;
+  transition-property: background-color;
+  transition-duration: .8s;
+}
+
+.control-panel:hover {
+  background: rgb(247, 247, 247);
 }
 
 label {

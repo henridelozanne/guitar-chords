@@ -54,15 +54,17 @@ export default {
   }
 
   .menu-item {
-    /* background: pink; */
     padding: 15px;
     margin-right: 50px;
     font-family: 'Exo';
+    background-color: transparent;
+    transition-property: background-color;
+    transition-duration: .5s;
   }
 
   .menu-item:hover {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   .no-decoration {
