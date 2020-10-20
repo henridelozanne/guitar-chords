@@ -342,14 +342,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(242, 242, 240);
+    background-color: rgb(242, 242, 240);
     border-radius: 50%;
     margin-top: 50px;
+    transition-property: background-color;
+    transition-duration: .33s;
+    cursor: pointer;
   }
 
   .play-icon-ctn:hover {
-    cursor: pointer;
-    background-image: radial-gradient(rgb(195, 247, 192), rgb(123, 240, 203));
+    background-color: rgb(195, 247, 192);
   }
 
   .play-icon-ctn img {
