@@ -1,7 +1,7 @@
 <template>
   <div class="control-container">
     <div class="first">
-      <div class="btn-ctn">
+      <div class="btn-ctn grid-root">
           <button v-for="root in possibleRoots"
                   :key="root.value"
                   @click="handleRootClick(root.value)"
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="second four-spaces">
-        <div class="btn-ctn">
+        <div class="btn-ctn grid-quality">
             <button v-for="quality in possibleQualities"
                     :key="quality.label"
                     @click="handleQualityClick(quality.value)"
@@ -164,10 +164,19 @@
 }
 
 .btn-ctn {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 0 10px;
   align-items: center;
   height: 100%;
+  
+}
+
+.grid-root {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-quality {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 button {
@@ -178,15 +187,14 @@ button {
 
 .btn-ctn button {
   padding: 10px 30px;
-  flex-basis: 33.3%;
-  font-size: 13px;
-  border-radius: 25px;
+  font-size: 14px;
+  border-radius: 10px;
   min-width: 81px;
 }
 
 .four-spaces button{
   flex-basis: 25%;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn-selected {
@@ -210,8 +218,10 @@ button {
 }
 
 .note-btn {
-  background: white;
+  background-color: white;
   border-width: 1px;
   border-color: rgb(223, 223, 223);
+  transition-property: background-color;
+  transition-duration: .35s;
 }
 </style>
