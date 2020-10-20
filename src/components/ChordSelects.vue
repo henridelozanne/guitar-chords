@@ -2,38 +2,28 @@
   <div class="control-container">
     <div class="first">
       <div class="btn-ctn">
-          <button @click="handleRootClick('C')" class="note-btn" :class="{ 'btn-selected': root === 'C', 'hovered-btn': root !== 'C' }">C</button>
-          <button @click="handleRootClick('Db')" class="note-btn" :class="{ 'btn-selected': root === 'Db', 'hovered-btn': root !== 'Db'  }">C#/Db</button>
-          <button @click="handleRootClick('D')" class="note-btn" :class="{ 'btn-selected': root === 'D', 'hovered-btn': root !== 'D'  }">D</button>
-          <button @click="handleRootClick('Eb')" class="note-btn" :class="{ 'btn-selected': root === 'Eb', 'hovered-btn': root !== 'Eb'  }">D#/Eb</button>
-          <button @click="handleRootClick('E')" class="note-btn" :class="{ 'btn-selected': root === 'E', 'hovered-btn': root !== 'E'  }">E</button>
-          <button @click="handleRootClick('F')" class="note-btn" :class="{ 'btn-selected': root === 'F', 'hovered-btn': root !== 'F'  }">F</button>
-          <button @click="handleRootClick('Gb')" class="note-btn" :class="{ 'btn-selected': root === 'Gb', 'hovered-btn': root !== 'Gb'  }">F#/Gb</button>
-          <button @click="handleRootClick('G')" class="note-btn" :class="{ 'btn-selected': root === 'G', 'hovered-btn': root !== 'G'  }">G</button>
-          <button @click="handleRootClick('Ab')" class="note-btn" :class="{ 'btn-selected': root === 'Ab', 'hovered-btn': root !== 'Ab'  }">G#/Ab</button>
-          <button @click="handleRootClick('A')" class="note-btn" :class="{ 'btn-selected': root === 'A', 'hovered-btn': root !== 'A'  }">A</button>
-          <button @click="handleRootClick('Bb')" class="note-btn" :class="{ 'btn-selected': root === 'Bb', 'hovered-btn': root !== 'Bb'  }">A#/Bb</button>
-          <button @click="handleRootClick('B')" class="note-btn" :class="{ 'btn-selected': root === 'B', 'hovered-btn': root !== 'B'  }">B</button>
+          <button v-for="root in possibleRoots"
+                  :key="root.value"
+                  @click="handleRootClick(root.value)"
+                  class="note-btn"
+                  :class="{
+                    'btn-selected': selectedRoot === root.value,
+                    'hovered-btn': selectedRoot !== root.value }" >
+              {{root.label}}
+          </button>
       </div>
     </div>
     <div class="second four-spaces">
         <div class="btn-ctn">
-            <button @click="handleQualityClick('')" class="note-btn" :class="{ 'btn-selected': quality === '', 'hovered-btn': quality !== '' }">Maj</button>
-            <button @click="handleQualityClick('maj7')" class="note-btn" :class="{ 'btn-selected': quality === 'maj7', 'hovered-btn': quality !== 'maj7' }">Maj7</button>
-            <button @click="handleQualityClick('7')" class="note-btn" :class="{ 'btn-selected': quality === '7', 'hovered-btn': quality !== '7' }">7</button>
-            <button @click="handleQualityClick('7b9')" class="note-btn" :class="{ 'btn-selected': quality === '7b9', 'hovered-btn': quality !== '7b9' }">7b9</button>
-            <button @click="handleQualityClick('m')" class="note-btn" :class="{ 'btn-selected': quality === 'm', 'hovered-btn': quality !== 'm' }">m</button>
-            <button @click="handleQualityClick('m7')" class="note-btn" :class="{ 'btn-selected': quality === 'm7', 'hovered-btn': quality !== 'm7' }">m7</button>
-            <button @click="handleQualityClick('6')" class="note-btn" :class="{ 'btn-selected': quality === '6', 'hovered-btn': quality !== '6' }">6</button>
-            <button @click="handleQualityClick('m6')" class="note-btn" :class="{ 'btn-selected': quality === 'm6', 'hovered-btn': quality !== 'm6' }">m6</button>
-            <button @click="handleQualityClick('11')" class="note-btn" :class="{ 'btn-selected': quality === '11', 'hovered-btn': quality !== '11' }">11</button>
-            <button @click="handleQualityClick('m11')" class="note-btn" :class="{ 'btn-selected': quality === 'm11', 'hovered-btn': quality !== 'm11' }">m11</button>
-            <button @click="handleQualityClick('69')" class="note-btn" :class="{ 'btn-selected': quality === '69', 'hovered-btn': quality !== '69' }">69</button>
-            <button @click="handleQualityClick('m69')" class="note-btn" :class="{ 'btn-selected': quality === 'm69', 'hovered-btn': quality !== 'm69' }">m69</button>
-            <button @click="handleQualityClick('dim')" class="note-btn" :class="{ 'btn-selected': quality === 'dim', 'hovered-btn': quality !== 'dim' }">dim</button>
-            <button @click="handleQualityClick('aug')" class="note-btn" :class="{ 'btn-selected': quality === 'aug', 'hovered-btn': quality !== 'aug' }">aug</button>
-            <button @click="handleQualityClick('sus2')" class="note-btn" :class="{ 'btn-selected': quality === 'sus2', 'hovered-btn': quality !== 'sus2' }">sus2</button>
-            <button @click="handleQualityClick('sus4')" class="note-btn" :class="{ 'btn-selected': quality === 'sus4', 'hovered-btn': quality !== 'sus4' }">sus4</button>
+            <button v-for="quality in possibleQualities"
+                    :key="quality.label"
+                    @click="handleQualityClick(quality.value)"
+                    class="note-btn"
+                    :class="{
+                      'btn-selected': selectedQuality === quality.value,
+                      'hovered-btn': selectedQuality !== quality.value }">
+                  {{quality.label}}
+            </button>
         </div>
     </div>
   <link rel="stylesheet" type="text/css" href="all.css" media="screen" />
@@ -50,73 +40,73 @@
     },
     data() {
       return {
-        root: 'C',
+        selectedRoot: 'C',
         possibleRoots: [
-          { name: 'C', value: 'C'},
-          { name: 'C#/Db', value: 'Db'},
-          { name: 'D', value: 'D'},
-          { name: 'D#/Eb', value: 'Eb'},
-          { name: 'E', value: 'E'},
-          { name: 'F', value: 'F'},
-          { name: 'F#/Gb', value: 'Gb'},
-          { name: 'G', value: 'G'},
-          { name: 'G#/Ab', value: 'Ab'},
-          { name: 'A', value: 'A'},
-          { name: 'A#/Bb', value: 'Bb'},
-          { name: 'B', value: 'B'},
+          { label: 'C', value: 'C'},
+          { label: 'C#/Db', value: 'Db'},
+          { label: 'D', value: 'D'},
+          { label: 'D#/Eb', value: 'Eb'},
+          { label: 'E', value: 'E'},
+          { label: 'F', value: 'F'},
+          { label: 'F#/Gb', value: 'Gb'},
+          { label: 'G', value: 'G'},
+          { label: 'G#/Ab', value: 'Ab'},
+          { label: 'A', value: 'A'},
+          { label: 'A#/Bb', value: 'Bb'},
+          { label: 'B', value: 'B'},
         ],
-        quality: '',
+        selectedQuality: '',
         possibleQualities: [
-          { name: 'maj', value: '' },
-          { name: 'maj7', value: 'maj7' },
-          { name: '7', value: '7' },
-          { name: '7b9', value: '7b9' },
-          { name: 'm', value: 'm' },
-          { name: 'm7', value: 'm7' },
-          { name: '6', value: '6' },
-          { name: 'm6', value: 'm6' },
-          { name: '11', value: '11' },
-          { name: 'm11', value: 'm11' },
-          { name: '69', value: '69' },
-          { name: 'm69', value: 'm69' },
-          { name: 'dim', value: 'dim' },
-          { name: 'aug', value: 'aug' },
-          { name: 'sus2', value: 'sus2' },
-          { name: 'sus4', value: 'sus4' },
+          { label: 'maj', value: '' },
+          { label: 'maj7', value: 'maj7' },
+          { label: '7', value: '7' },
+          { label: '7b9', value: '7b9' },
+          { label: 'm', value: 'm' },
+          { label: 'm7', value: 'm7' },
+          { label: '6', value: '6' },
+          { label: 'm6', value: 'm6' },
+          { label: '11', value: '11' },
+          { label: 'm11', value: 'm11' },
+          { label: '69', value: '69' },
+          { label: 'm69', value: 'm69' },
+          { label: 'dim', value: 'dim' },
+          { label: 'aug', value: 'aug' },
+          { label: 'sus2', value: 'sus2' },
+          { label: 'sus4', value: 'sus4' },
         ],
         tension: '',
         possibleTensions: [
-          { name: '7#11b6b13(omit 3)', value: '7#11b6b13(omit 3)' },
-          { name: '(add9)', value: '(add9)' },
-          { name: '(add11)', value: '(add11)' },
-          { name: '(omit5)', value: '(omit5)' },
-          { name: '(add911)', value: '(add911)' },
-          { name: '(addb69)', value: '(addb69)' },
+          { label: '7#11b6b13(omit 3)', value: '7#11b6b13(omit 3)' },
+          { label: '(add9)', value: '(add9)' },
+          { label: '(add11)', value: '(add11)' },
+          { label: '(omit5)', value: '(omit5)' },
+          { label: '(add911)', value: '(add911)' },
+          { label: '(addb69)', value: '(addb69)' },
         ],
         bass: '',
         possibleBasses: [
-          { name: 'C', value: 'C'},
-          { name: 'C#/Db', value: 'Db'},
-          { name: 'D', value: 'D'},
-          { name: 'D#/Eb', value: 'Eb'},
-          { name: 'E', value: 'E'},
-          { name: 'F', value: 'F'},
-          { name: 'F#/Gb', value: 'Gb'},
-          { name: 'G', value: 'G'},
-          { name: 'G#/Ab', value: 'Ab'},
-          { name: 'A', value: 'A'},
-          { name: 'A#/Bb', value: 'Bb'},
-          { name: 'B', value: 'B'},
+          { label: 'C', value: 'C'},
+          { label: 'C#/Db', value: 'Db'},
+          { label: 'D', value: 'D'},
+          { label: 'D#/Eb', value: 'Eb'},
+          { label: 'E', value: 'E'},
+          { label: 'F', value: 'F'},
+          { label: 'F#/Gb', value: 'Gb'},
+          { label: 'G', value: 'G'},
+          { label: 'G#/Ab', value: 'Ab'},
+          { label: 'A', value: 'A'},
+          { label: 'A#/Bb', value: 'Bb'},
+          { label: 'B', value: 'B'},
         ],
       };
     },
     methods: {
       searchChord() {
-        const selectedChord = this.root + '_' + this.quality + '' + this.tension + '_' + this.bass;
+        const selectedChord = this.selectedRoot + '_' + this.selectedQuality + '' + this.tension + '_' + this.bass;
         this.$emit('searchChord', selectedChord);
       },
       handleRootClick(note) {
-        this.root = note;
+        this.selectedRoot = note;
         this.searchChord();
       },
       handleQualityClick(quality) {
@@ -137,7 +127,6 @@
 }
 
 .first {
-  /* background: green; */
   height: 50%;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -147,28 +136,23 @@
 }
 
 .second {
-  /* background: blue; */
   height: 50%;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
   padding-right: 40px;
   box-sizing: border-box;
-  /* background: rgb(225, 224, 224); */
   align-content: center;
 }
 
 .third{
-  /* background: pink; */
   flex-grow: 1;
-  /* height: 250px; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
 .third div {
-  /* color: white; */
   font-family: "Open sans";
   font-size: 0.85em;
 }
@@ -190,7 +174,6 @@ button {
   background: none;
   text-align: center;
   outline: none;
-  /* border-width: 0; */
 }
 
 .btn-ctn button {
@@ -218,12 +201,10 @@ button {
 
 @media screen and (max-width: 768px) {
   .btn-ctn button {
-    /* padding: 0 30px !important; */
     flex-basis: 25%;
   }
 
   .four-spaces button {
-    /* padding: auto 30px !important; */
     flex-basis: 16.66%;
   }
 }
