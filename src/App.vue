@@ -16,10 +16,10 @@ import PageTitle from './components/PageTitle.vue';
 import ChordSelects from './components/ChordSelects.vue';
 import ExactChordRadio from './components/ExactChordRadio.vue';
 import ResultSection from './components/ResultSection.vue';
-import Quizz from './components/Quizz.vue';
+import Quizz from './pages/Quizz.vue';
 import ChordDiagram from '../src/components/ChordDiagram.vue';
 import ProgressBar from '../src/components/ProgressBar.vue';
-import SearchChords from '../src/components/SearchChords.vue';
+import SearchChords from '../src/pages/SearchChords.vue';
 import Navbar from '../src/components/Navbar'
 
 export default {

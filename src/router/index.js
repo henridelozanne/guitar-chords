@@ -2,11 +2,11 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import ElementUI from 'element-ui';
 
-import Quizz from '../components/Quizz.vue';
-import About from '../components/About.vue';
-import SearchChords from '../components/SearchChords.vue';
-import FindChordName from '../components/FindChordName.vue';
-import Tuner from '../components/Tuner.vue';
+import Quizz from '../pages/Quizz.vue';
+import About from '../pages/About.vue';
+import SearchChords from '../pages/SearchChords.vue';
+import FindChordName from '../pages/FindChordName.vue';
+import Tuner from '../pages/Tuner.vue';
 
 Vue.use(Router);
 Vue.use(ElementUI);

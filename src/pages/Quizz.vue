@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ChordDiagram from './ChordDiagram';
+import ChordDiagram from '../components/ChordDiagram';
 
 export default {
   name: 'Quizz',
