@@ -1,10 +1,9 @@
 <template>
   <div class="navbar">
     <div class="branding">
-      <router-link to="/">
-        <div class="branding-plain">Guitar Chords</div>
+      <router-link to="/" class="branding-plain">
+        <div>Guitar Chords</div>
       </router-link>
-      <div class="branding-transient"></div>
     </div>
     <app-menu></app-menu>
   </div>
@@ -23,11 +22,13 @@ export default {
 
 <style>
 .navbar {
-  background: rgb(46, 64, 109);
+  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #1b458c 100%);
   height: 100px;
   display: flex;
   flex-direction: row;
   color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+  z-index: 1;
 }
 
 .branding {
@@ -39,15 +40,8 @@ export default {
 
 .branding-plain {
   flex-basis: 70%;
-  /* background: yellow; */
   padding: 5px;
-  padding-left: 10px;
+  padding-left: 30px;
   padding-right: 10px;
-}
-
-.branding-transient {
-  flex-basis: 30%;
-  background-image: linear-gradient(90deg, rgb(229, 229, 188, 0.5), rgb(46, 64, 109));
-  opacity: 0.25;
 }
 </style>
