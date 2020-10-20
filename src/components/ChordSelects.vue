@@ -113,7 +113,8 @@ export default {
       this.searchChord();
     },
     handleQualityClick(quality) {
-      this.quality = quality;
+      EventBus.$emit('chordChange')
+      this.selectedQuality = quality;
       this.searchChord();
     },
   },
