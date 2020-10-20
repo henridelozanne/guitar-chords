@@ -1,8 +1,8 @@
 <template>
-  <div class="control-panel">
-    <label for="similar-chords-checkbox">Show similar chords</label>
+  <div class="control-panel" @click="toggleCheckbox">
+    <label for="similar-chords-checkbox">Show similar chords :</label>
     <input id="similar-chords-checkbox" type="checkbox"
-           v-model="similarChordsEnabled" @change="doSomething">
+           v-model="similarChordsEnabled">
   </div>
 </template>
 
@@ -14,10 +14,15 @@ export default {
       similarChordsEnabled: false,
     };
   },
-  methods: {
-    doSomething() {
+  watch: {
+    similarChordsEnabled() {
       this.$emit('similarChordsChange', this.similarChordsEnabled);
-    },
+    }
+  },
+  methods: {
+    toggleCheckbox() {
+      this.similarChordsEnabled = !this.similarChordsEnabled
+    }
   },
 };
 </script>
@@ -27,25 +32,26 @@ export default {
   position: absolute;
   transform: translateY(-50%);
   top: 20%;
-  right: 0;
-  width: 80px;
-  height: 100px;
+  right: 50px;
   background: rgba(230, 230, 230, 0.6);
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-  box-shadow:2px 0px 15px rgba(100, 100, 100, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 15px;
+  cursor: pointer;
 }
 
 label {
   font-size: 0.82em;
+  margin-right: 5px;
+  pointer-events: none;
 }
 
 #similar-chords-checkbox {
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 </style>
