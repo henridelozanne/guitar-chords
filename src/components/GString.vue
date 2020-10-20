@@ -1,8 +1,8 @@
 <template>
   <div class="string">
       <div class="fret open-fret" :class="{'clickable-fret': isQuizzTime}">
-        <div v-if="stringValue === 'X'">X</div>
-        <div v-else>{{ stringValue }}</div>
+        <div v-if="stringValue === 'X' && currentPage !== 'find-chord-name'">X</div>
+        <div v-else-if="currentPage !== 'find-chord-name'">{{ stringValue }}</div>
         <div v-if="isQuizzTime" class="quizz-round" :class="{'clickable-fret': isQuizzTime, 'selected-fret': clickedFret === '0'}" @click="handleClickedFret('0')">
         </div>
       </div>
@@ -65,7 +65,7 @@ export default {
     },
     isQuizzTime: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     oneNoteAbove: {
       type: Boolean,
@@ -74,6 +74,14 @@ export default {
     aboveBase: {
       type: Number,
       default: 0,
+    },
+    stringIndex: {
+      type: Number,
+      default: 0,
+    },
+    currentPage: {
+      type: String,
+      default: 'search-chords'
     }
   },
   data() {
@@ -86,6 +94,7 @@ export default {
       if (this.clickedFret !== fret) {
         this.clickedFret = fret;
       } else this.clickedFret = undefined;
+      this.$emit('fretClicked', { stringIndex: this.stringIndex, clickedFret: this.clickedFret });
     },
   },
 }
@@ -167,6 +176,6 @@ export default {
   }
 
   .selected-fret {
-    background: yellow;
+    background: orange;
   }
 </style>

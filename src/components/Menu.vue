@@ -1,6 +1,7 @@
 <template>
   <div class="menu">
     <router-link class="no-decoration" to="/"><div class="menu-item menu-item-text">Search chords</div></router-link>
+    <router-link class="no-decoration" to="/find-chord-name"><div class="menu-item menu-item-text">Find chord name</div></router-link>
     <router-link class="no-decoration" to="/tuner"><div class="menu-item menu-item-text">Guitar tuner</div></router-link>
     <router-link class="no-decoration" to="/quizz"><div class="menu-item menu-item-text">Quizz</div></router-link>
     <router-link class="no-decoration" to="/about"><div class="menu-item menu-item-text">About</div></router-link>
@@ -9,6 +10,7 @@
     </div>
     <div class="modal" v-if="menuModalIsVisible">
       <div class="modal-item" @click="goTo('/')">Search chords</div>
+      <div class="modal-item" @click="goTo('/findchordname')">Find chord name</div>
       <div class="modal-item" @click="goTo('/tuner')">Guitar tuner</div>
       <div class="modal-item" @click="goTo('/quizz')">Quizz</div>
       <div class="modal-item" @click="goTo('/about')">About</div>

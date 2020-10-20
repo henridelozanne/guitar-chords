@@ -1,11 +1,16 @@
 <template>
-  <div>
-    <el-row>
-      <el-col>
-        <h1 class="chord-name">{{ chordName }} ?</h1>
-        <app-chord-diagram :quizz="true"/>
-      </el-col>
-    </el-row>
+  <div class="main">
+    <div class="left-panel">
+      <div>CMaj7 ?</div>
+    </div>
+    <div class="right-panel">
+      <el-row>
+        <el-col>
+          <h1 class="chord-name">{{ chordName }} ?</h1>
+          <app-chord-diagram :quizz="true"/>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -49,13 +54,14 @@ export default {
 
 <style>
 
-.chord-name {
-  margin-top: 20px;
-  margin-bottom: 25px;
+.left-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: yellow;
 }
 
 .submit-btn-ctn {
   margin-top: 25px;
 }
-
 </style>

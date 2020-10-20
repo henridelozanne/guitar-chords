@@ -13,76 +13,9 @@
 
 
   </div>
-  <!-- <div id="app">
-    <div class="big-container">
-      <div class="left">
-        <div class="branding">
-          <p>Guitar Chords</p>
-        </div>
-        <div class="menu">
-          <ul class="menu-list">
-            <li :class="{'is-selected-menu': currentPage === 'search-chords'}" class="search-chords" @click="currentPage = 'search-chords'">
-              <p>Search chords</p>
-            </li>
-            <li :class="{'is-selected-menu': currentPage === 'explore-songs'}" class="songs" @click="currentPage = 'explore-songs'">
-              <p>Explore songs</p>
-            </li>
-            <li :class="{'is-selected-menu': currentPage === 'quizz'}" class="quizz" @click="currentPage = 'quizz'">
-              <p>Quizz</p>
-            </li>
-            <li :class="{'is-selected-menu': currentPage === 'about'}" class="about" @click="currentPage = 'about'">
-              <p>About</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="right">
-        <div v-if="currentPage === 'quizz'" class="selects progress-bar-ctn">
-          <app-progress-bar :unitsQuantity="unitsQuantity"/>
-        </div>
-        <div v-if="currentPage === 'search-chords'" class="results">
-          <div v-if="currentPage === 'search-chords'" class="selects">
-            <app-chord-selects @searchChord="searchChord" @exactChordUpdated="updateExactChord" class="selects-ctn"/>
-          </div>
-          <app-chord-diagram v-for="result in results" :key="result.chordName"
-                       :result="result" class="result-ctn"/>
-        </div>
-        <div v-if="currentPage === 'quizz'" class="chord-diagram-ctn">
-          <app-chord-diagram v-if="!showFourPossibilities" ref="chord-diagram" class="result-ctn solo-result-ctn" :currentPage="currentPage"/>
-          <div v-else>
-            <app-chord-diagram :showFourPossibilities="showFourPossibilities" ref="chord-diagram" class="result-ctn" :currentPage="currentPage"/>
-            <app-chord-diagram :showFourPossibilities="showFourPossibilities" ref="chord-diagram" class="result-ctn" :currentPage="currentPage"/>
-            <app-chord-diagram :showFourPossibilities="showFourPossibilities" ref="chord-diagram" class="result-ctn" :currentPage="currentPage"/>
-            <app-chord-diagram :showFourPossibilities="showFourPossibilities" ref="chord-diagram" class="result-ctn" :currentPage="currentPage"/>
-          </div>
-          <div class="quizz-btns">
-            <button class="submit-btn" @click="submitAnswer">Submit</button>
-            <button class="four-possibilities-btn" @click="giveFourPossibilities">4 possibilities</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="finalScoreIsVisible" class="final-score-modal">
-       <div class="modal-close-btn" @click="closeFinalScoreModal">X</div>
-       <div class="modal-content">
-         <h3>Quizz recap :</h3>
-         <h1 class="your-score">Your score: {{ totalGoodAnswers }} / {{ currentQuestionNumber}}</h1>
-         <button @click="closeFinalScoreModal" class="new-game-btn">
-           New game
-         </button>
-       </div>
-     </div>
-
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-
-  </div> -->
-
 </template>
 
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-
 
 <script>
 import jQuery from 'jQuery';

@@ -7,12 +7,12 @@
       <!-- <h2 v-if="showFourPossibilities">{{currentQuestionChord}} ?</h2> -->
 
       <div class="guitar-neck">
-        <app-g-string ref="string1" class="string-ctn" :stringValue="cleanDiagram[0]" :fingeringValue="cleanFingering[0]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
-        <app-g-string ref="string2" class="string-ctn" :stringValue="cleanDiagram[1]" :fingeringValue="cleanFingering[1]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
-        <app-g-string ref="string3" class="string-ctn" :stringValue="cleanDiagram[2]" :fingeringValue="cleanFingering[2]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
-        <app-g-string ref="string4" class="string-ctn" :stringValue="cleanDiagram[3]" :fingeringValue="cleanFingering[3]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
-        <app-g-string ref="string5" class="string-ctn" :stringValue="cleanDiagram[4]" :fingeringValue="cleanFingering[4]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
-        <app-g-string ref="string6" class="string-ctn" :stringValue="cleanDiagram[5]" :fingeringValue="cleanFingering[5]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'quizz'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase"/>
+        <app-g-string ref="string1" class="string-ctn" :stringValue="cleanDiagram[0]" :fingeringValue="cleanFingering[0]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="0" :currentPage="currentPage" />
+        <app-g-string ref="string2" class="string-ctn" :stringValue="cleanDiagram[1]" :fingeringValue="cleanFingering[1]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="1" :currentPage="currentPage" />
+        <app-g-string ref="string3" class="string-ctn" :stringValue="cleanDiagram[2]" :fingeringValue="cleanFingering[2]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="2" :currentPage="currentPage" />
+        <app-g-string ref="string4" class="string-ctn" :stringValue="cleanDiagram[3]" :fingeringValue="cleanFingering[3]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="3" :currentPage="currentPage" />
+        <app-g-string ref="string5" class="string-ctn" :stringValue="cleanDiagram[4]" :fingeringValue="cleanFingering[4]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="4" :currentPage="currentPage" />
+        <app-g-string ref="string6" class="string-ctn" :stringValue="cleanDiagram[5]" :fingeringValue="cleanFingering[5]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="5" :currentPage="currentPage" />
 
         <div v-if="oneNoteAbove" class="fret-position">
           ------ {{ aboveBase }}<sup>{{aboveBase === 3 ? 'rd' : 'th'}}</sup> fret ------
@@ -213,7 +213,15 @@
           'Bb',
           'B',
         ],
-        aboveBase: 0
+        aboveBase: 0,
+        drawnVoicing: [
+          'X',
+          'X',
+          'X',
+          'X',
+          'X',
+          'X',
+        ]
       };
     },
     components: {
@@ -283,7 +291,10 @@
         this.$refs.string4.clickedFret = undefined;
         this.$refs.string5.clickedFret = undefined;
         this.$refs.string6.clickedFret = undefined;
-      }
+      },
+      saveNewDrawnChord(payload) {
+        this.drawnVoicing[payload.stringIndex] = payload.clickedFret;
+      },
     },
   };
 </script>

@@ -40,7 +40,7 @@
           <div class="mechanic">
             <button class="tuning-button"></button>
             <div class="string-name">
-              E
+              e
             </div>
           </div>
         </div>

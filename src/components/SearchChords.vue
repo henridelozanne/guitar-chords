@@ -5,13 +5,15 @@
          <app-chord-selects @searchChord="searchChord" class="selects-ctn" ref="chordSelects"/>
       </div>
       <div class="right-panel">
-        <app-chord-diagram v-if="results[0]" :result="results[0]" class="result-ctn"/>
+        <app-chord-diagram v-if="results[0]" :result="results[0]" class="result-ctn" currentPage="search-chords"/>
         <div v-if="similarChordsEnabled" class="similar-chords-ctn">
           <div @click="showPreviousSimChord" class="arrow">
             <app-arrow-up v-if="simTopArrowIsEnabled"  class="top-arrow" />
           </div>
-          <app-chord-diagram v-if="results[currentSimChord]" :result="results[currentSimChord]" class="result-ctn"/>
-          <div v-if="simBottomArrowIsEnabled" class="bottom-arrow" @click="showNextSimChord"></div>
+
+          <app-chord-diagram v-if="results[currentSimChord]" :result="results[currentSimChord]"
+                             currentPage="search-chords" class="result-ctn" />
+
           <div @click="showNextSimChord" class="arrow">
             <app-arrow-down v-if="simBottomArrowIsEnabled" class="bottom-arrow" />
           </div>
