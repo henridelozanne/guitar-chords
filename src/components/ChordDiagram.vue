@@ -4,7 +4,6 @@
     <div class="hover-detector" @mouseover="showFingering" @mouseleave="hideFingering">
       <h2 v-if="!quizz && chordName" class="chord-name">{{ chordName }} :</h2>
       <h2 v-else class="chord-name"> {{currentQuestionChord}} ?</h2>
-      <!-- <h2 v-if="showFourPossibilities">{{currentQuestionChord}} ?</h2> -->
 
       <div class="guitar-neck">
         <app-g-string ref="string1" class="string-ctn" :stringValue="cleanDiagram[0]" :fingeringValue="cleanFingering[0]" :fingeringIsVisible="fingeringIsVisible" :isQuizzTime="currentPage === 'find-chord-name'" :oneNoteAbove="oneNoteAbove" :aboveBase="aboveBase" @fretClicked="saveNewDrawnChord" :stringIndex="0" :currentPage="currentPage" />
@@ -173,130 +172,159 @@
 </template>
 
 <script>
-  import GString from './GString.vue';
+import { EventBus } from '../event-bus'
+import GString from './GString.vue';
+import gsap from 'gsap';
 
-  export default {
-    name: 'ChordDiagram',
-    props: {
-      result: {
-        type: Object,
-        default: () => {},
-      },
-      quizz: {
-        type: Boolean,
-        default: false,
-      },
-      currentPage: {
-        type: String,
-        default: 'search-chords',
-      },
-      showFourPossibilities: {
-        type: Boolean,
-        default: false,
-      }
+export default {
+  name: 'ChordDiagram',
+  props: {
+    result: {
+      type: Object,
+      default: () => {},
     },
-    data() {
-      return {
-        fingeringIsVisible: false,
-        currentQuestionChord: undefined,
-        possibleRoots: [
-          'C',
-          'Db',
-          'D',
-          'Eb',
-          'E',
-          'F',
-          'Gb',
-          'G',
-          'Ab',
-          'A',
-          'Bb',
-          'B',
-        ],
-        aboveBase: 0,
-        drawnVoicing: [
-          'X',
-          'X',
-          'X',
-          'X',
-          'X',
-          'X',
-        ]
-      };
+    quizz: {
+      type: Boolean,
+      default: false,
     },
-    components: {
-      'app-g-string': GString,
+    currentPage: {
+      type: String,
+      default: 'search-chords',
     },
-    computed: {
-      oneNoteAbove() {
-        return this.result.strings.split(' ').some((element) => parseInt(element, 10) > 5);
-      },
-      cleanDiagram() {
-        if (!this.quizz && this.result) {
-          const splittedString = this.result.strings.split(' ');
-          const cleanNumberValues = splittedString.map((el) => {
-              if (Number.isInteger(parseInt(el, 10))) {
-                return parseInt(el, 10);
-              }
-              return 999;
-            });
-          if (this.oneNoteAbove) {
-            this.aboveBase = Math.min(...cleanNumberValues);
-          }
-          return splittedString;
-        } return '';
-      },
-      cleanFingering() {
-        if (!this.quizz && this.result) {
-          return this.result.fingering.split(' ');
-        } return '';
-      },
-      chordName() {
-        if (!this.quizz && this.result) {
-          return this.result.chordName.replace(/,/g, "");;
-        } return '';
-      }
+    showFourPossibilities: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  created() {
+    EventBus.$on('chordChange', this.flipDiagram);
+  },
+  data() {
+    return {
+      fingeringIsVisible: false,
+      currentQuestionChord: undefined,
+      possibleRoots: [
+        'C',
+        'Db',
+        'D',
+        'Eb',
+        'E',
+        'F',
+        'Gb',
+        'G',
+        'Ab',
+        'A',
+        'Bb',
+        'B',
+      ],
+      aboveBase: 0,
+      drawnVoicing: [
+        'X',
+        'X',
+        'X',
+        'X',
+        'X',
+        'X',
+      ]
+    };
+  },
+  components: {
+    'app-g-string': GString,
+  },
+  watch: {
+    // result() {
+    //   this.flipDiagram();
+    // }
+  },
+  computed: {
+    oneNoteAbove() {
+      return this.result.strings.split(' ').some((element) => parseInt(element, 10) > 5);
     },
-    mounted() {
-      if (this.currentPage === 'quizz') {
-        this.setQuestionChord();
-      }
+    cleanDiagram() {
+      if (!this.quizz && this.result) {
+        const splittedString = this.result.strings.split(' ');
+        const cleanNumberValues = splittedString.map((el) => {
+            if (Number.isInteger(parseInt(el, 10))) {
+              return parseInt(el, 10);
+            }
+            return 999;
+          });
+        if (this.oneNoteAbove) {
+          this.aboveBase = Math.min(...cleanNumberValues);
+        }
+        return splittedString;
+      } return '';
     },
-    methods: {
-      showFingering() {
-        this.fingeringIsVisible = true;
-      },
-      hideFingering() {
-        this.fingeringIsVisible = false;
-      },
-      setQuestionChord() {
-        this.currentQuestionChord = this.possibleRoots[Math.floor(Math.random()*this.possibleRoots.length)];
-      },
-      playChord() {
-        let myArray = [];
-        this.cleanDiagram.forEach((string, index) => {
-          if (string !== 'X') {
-            myArray.push(`${index}-${string}`)
-          }
-        })
-        let myTimeout = 500;
-        myArray.forEach((elem) => {
-          document.getElementById(elem).play();
-        });
-      },
-      resetClickedFrets() {
-        this.$refs.string1.clickedFret = undefined;
-        this.$refs.string2.clickedFret = undefined;
-        this.$refs.string3.clickedFret = undefined;
-        this.$refs.string4.clickedFret = undefined;
-        this.$refs.string5.clickedFret = undefined;
-        this.$refs.string6.clickedFret = undefined;
-      },
-      saveNewDrawnChord(payload) {
-        this.drawnVoicing[payload.stringIndex] = payload.clickedFret;
-      },
+    cleanFingering() {
+      if (!this.quizz && this.result) {
+        return this.result.fingering.split(' ');
+      } return '';
     },
-  };
+    chordName() {
+      if (!this.quizz && this.result) {
+        return this.result.chordName.replace(/,/g, "");;
+      } return '';
+    }
+  },
+  mounted() {
+    if (this.currentPage === 'quizz') {
+      this.setQuestionChord();
+    }
+  },
+  methods: {
+    showFingering() {
+      this.fingeringIsVisible = true;
+    },
+    flipDiagram() {
+      const tl = gsap.timeline();
+
+      gsap.to('.diagram-container', {
+              duration: .2,
+              opacity: .6,
+              rotationY: 90,
+          })
+
+      this.isIt = true;
+
+      setTimeout(() => {
+        gsap.to('.diagram-container', {
+                duration: .1,
+                opacity: 1,
+                rotationY: 0,
+            })
+      }, 650);
+    },
+    hideFingering() {
+      this.fingeringIsVisible = false;
+    },
+    setQuestionChord() {
+      this.currentQuestionChord = this.possibleRoots[Math.floor(Math.random()*this.possibleRoots.length)];
+    },
+    playChord() {
+      let myArray = [];
+      this.cleanDiagram.forEach((string, index) => {
+        if (string !== 'X') {
+          myArray.push(`${index}-${string}`)
+        }
+      })
+      let myTimeout = 500;
+      myArray.forEach((elem) => {
+        document.getElementById(elem).play();
+      });
+    },
+    resetClickedFrets() {
+      this.$refs.string1.clickedFret = undefined;
+      this.$refs.string2.clickedFret = undefined;
+      this.$refs.string3.clickedFret = undefined;
+      this.$refs.string4.clickedFret = undefined;
+      this.$refs.string5.clickedFret = undefined;
+      this.$refs.string6.clickedFret = undefined;
+    },
+    saveNewDrawnChord(payload) {
+      this.drawnVoicing[payload.stringIndex] = payload.clickedFret;
+    },
+  },
+};
 </script>
 
 <style scoped>

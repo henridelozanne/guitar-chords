@@ -31,90 +31,93 @@
 </template>
 
 <script>
-  import ExactChordRadio from './ExactChordRadio.vue';
+import { EventBus} from '../event-bus'
+import ExactChordRadio from './ExactChordRadio.vue';
 
-  export default {
-    name:'ChordSelect',
-    components: {
-      'app-exact-chord-radio': ExactChordRadio,
-    },
-    data() {
-      return {
-        selectedRoot: 'C',
-        possibleRoots: [
-          { label: 'C', value: 'C'},
-          { label: 'C#/Db', value: 'Db'},
-          { label: 'D', value: 'D'},
-          { label: 'D#/Eb', value: 'Eb'},
-          { label: 'E', value: 'E'},
-          { label: 'F', value: 'F'},
-          { label: 'F#/Gb', value: 'Gb'},
-          { label: 'G', value: 'G'},
-          { label: 'G#/Ab', value: 'Ab'},
-          { label: 'A', value: 'A'},
-          { label: 'A#/Bb', value: 'Bb'},
-          { label: 'B', value: 'B'},
-        ],
-        selectedQuality: '',
-        possibleQualities: [
-          { label: 'maj', value: '' },
-          { label: 'maj7', value: 'maj7' },
-          { label: '7', value: '7' },
-          { label: '7b9', value: '7b9' },
-          { label: 'm', value: 'm' },
-          { label: 'm7', value: 'm7' },
-          { label: '6', value: '6' },
-          { label: 'm6', value: 'm6' },
-          { label: '11', value: '11' },
-          { label: 'm11', value: 'm11' },
-          { label: '69', value: '69' },
-          { label: 'm69', value: 'm69' },
-          { label: 'dim', value: 'dim' },
-          { label: 'aug', value: 'aug' },
-          { label: 'sus2', value: 'sus2' },
-          { label: 'sus4', value: 'sus4' },
-        ],
-        tension: '',
-        possibleTensions: [
-          { label: '7#11b6b13(omit 3)', value: '7#11b6b13(omit 3)' },
-          { label: '(add9)', value: '(add9)' },
-          { label: '(add11)', value: '(add11)' },
-          { label: '(omit5)', value: '(omit5)' },
-          { label: '(add911)', value: '(add911)' },
-          { label: '(addb69)', value: '(addb69)' },
-        ],
-        bass: '',
-        possibleBasses: [
-          { label: 'C', value: 'C'},
-          { label: 'C#/Db', value: 'Db'},
-          { label: 'D', value: 'D'},
-          { label: 'D#/Eb', value: 'Eb'},
-          { label: 'E', value: 'E'},
-          { label: 'F', value: 'F'},
-          { label: 'F#/Gb', value: 'Gb'},
-          { label: 'G', value: 'G'},
-          { label: 'G#/Ab', value: 'Ab'},
-          { label: 'A', value: 'A'},
-          { label: 'A#/Bb', value: 'Bb'},
-          { label: 'B', value: 'B'},
-        ],
-      };
-    },
-    methods: {
-      searchChord() {
-        const selectedChord = this.selectedRoot + '_' + this.selectedQuality + '' + this.tension + '_' + this.bass;
-        this.$emit('searchChord', selectedChord);
+export default {
+  name:'ChordSelect',
+  components: {
+    'app-exact-chord-radio': ExactChordRadio,
+  },
+  data() {
+    return {
+      launchAnimation: false,
+      selectedRoot: 'C',
+      possibleRoots: [
+        { label: 'C', value: 'C'},
+        { label: 'C#/Db', value: 'Db'},
+        { label: 'D', value: 'D'},
+        { label: 'D#/Eb', value: 'Eb'},
+        { label: 'E', value: 'E'},
+        { label: 'F', value: 'F'},
+        { label: 'F#/Gb', value: 'Gb'},
+        { label: 'G', value: 'G'},
+        { label: 'G#/Ab', value: 'Ab'},
+        { label: 'A', value: 'A'},
+        { label: 'A#/Bb', value: 'Bb'},
+        { label: 'B', value: 'B'},
+      ],
+      selectedQuality: '',
+      possibleQualities: [
+        { label: 'maj', value: '' },
+        { label: 'maj7', value: 'maj7' },
+        { label: '7', value: '7' },
+        { label: '7b9', value: '7b9' },
+        { label: 'm', value: 'm' },
+        { label: 'm7', value: 'm7' },
+        { label: '6', value: '6' },
+        { label: 'm6', value: 'm6' },
+        { label: '11', value: '11' },
+        { label: 'm11', value: 'm11' },
+        { label: '69', value: '69' },
+        { label: 'm69', value: 'm69' },
+        { label: 'dim', value: 'dim' },
+        { label: 'aug', value: 'aug' },
+        { label: 'sus2', value: 'sus2' },
+        { label: 'sus4', value: 'sus4' },
+      ],
+      tension: '',
+      possibleTensions: [
+        { label: '7#11b6b13(omit 3)', value: '7#11b6b13(omit 3)' },
+        { label: '(add9)', value: '(add9)' },
+        { label: '(add11)', value: '(add11)' },
+        { label: '(omit5)', value: '(omit5)' },
+        { label: '(add911)', value: '(add911)' },
+        { label: '(addb69)', value: '(addb69)' },
+      ],
+      bass: '',
+      possibleBasses: [
+        { label: 'C', value: 'C'},
+        { label: 'C#/Db', value: 'Db'},
+        { label: 'D', value: 'D'},
+        { label: 'D#/Eb', value: 'Eb'},
+        { label: 'E', value: 'E'},
+        { label: 'F', value: 'F'},
+        { label: 'F#/Gb', value: 'Gb'},
+        { label: 'G', value: 'G'},
+        { label: 'G#/Ab', value: 'Ab'},
+        { label: 'A', value: 'A'},
+        { label: 'A#/Bb', value: 'Bb'},
+        { label: 'B', value: 'B'},
+      ],
+    };
+  },
+  methods: {
+    searchChord() {
+      const selectedChord = this.selectedRoot + '_' + this.selectedQuality + '' + this.tension + '_' + this.bass;
+      this.$emit('searchChord', selectedChord);
       },
-      handleRootClick(note) {
-        this.selectedRoot = note;
-        this.searchChord();
-      },
-      handleQualityClick(quality) {
-        this.quality = quality;
-        this.searchChord();
-      },
+    handleRootClick(note) {
+      EventBus.$emit('chordChange')
+      this.selectedRoot = note;
+      this.searchChord();
     },
-  };
+    handleQualityClick(quality) {
+      this.quality = quality;
+      this.searchChord();
+    },
+  },
+};
 </script>
 
 
