@@ -27,10 +27,10 @@
     <source src="../assets/notes/0-0.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-  <audio id="0-1">
-    <source src="../assets/notes/0-1.mp3" type="audio/mpeg">
+  <!-- <audio id="0-1">
+    <source src="../assets/notes/0-1.aif" type="audio/aiff">
     Your browser does not support the audio element.
-  </audio>
+  </audio> -->
   <audio id="0-2">
     <source src="../assets/notes/0-2.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
@@ -175,6 +175,7 @@
 import { EventBus } from '../event-bus'
 import GString from './GString.vue';
 import gsap from 'gsap';
+import {Howl, Howler} from 'howler';
 
 export default {
   name: 'ChordDiagram',
@@ -230,11 +231,6 @@ export default {
   },
   components: {
     'app-g-string': GString,
-  },
-  watch: {
-    // result() {
-    //   this.flipDiagram();
-    // }
   },
   computed: {
     oneNoteAbove() {
@@ -301,16 +297,33 @@ export default {
       this.currentQuestionChord = this.possibleRoots[Math.floor(Math.random()*this.possibleRoots.length)];
     },
     playChord() {
-      let myArray = [];
-      this.cleanDiagram.forEach((string, index) => {
-        if (string !== 'X') {
-          myArray.push(`${index}-${string}`)
+      const notes = [];
+      this.cleanDiagram.forEach((position, index) => {
+        if (position !== 'X') {
+          notes.push(`${index}-${position}`)
         }
       })
-      let myTimeout = 500;
-      myArray.forEach((elem) => {
-        document.getElementById(elem).play();
+      notes.forEach((note) => {
+        const el = document.getElementById(note);
+        console.log('el', el)
+        el.play();
       });
+
+      document.getElementById('0-0').play();
+
+
+      // var sound = new Howl({
+      //     src: ['../assets/notes/old-stone.mp3'],
+      //     autoplay: false,
+      //     loop: false,
+      //     volume: 1.5,
+      // });
+
+      // console.log('sound', sound)
+
+      // sound.play();
+
+      console.log('notes', notes)
     },
     resetClickedFrets() {
       this.$refs.string1.clickedFret = undefined;
@@ -341,12 +354,9 @@ export default {
     background: rgb(255, 255, 255);
     text-align: center;
     font-family: 'Exo';
-    /* padding: 10px; */
-    /* padding-bottom: 24px; */
   }
 
   .el-card__body {
-    /* remove Element's padding */
     padding: 0 !important;
   }
 
@@ -406,7 +416,6 @@ export default {
   .chord-name {
     font-family: 'Exo';
     white-space: nowrap;
-    /* margin: 0 auto; */
     margin-top: 5px;
   }
 

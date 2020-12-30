@@ -1,11 +1,14 @@
 <template>
   <div class="main find-chord-name">
-    <app-chord-diagram v-if="results[0]" :result="results[0]"
-                       :currentPage="'find-chord-name'" class="result-ctn"
-                       ref="diagram"/>
-    <div class="right-part">
-      <button @click="findName">Find name</button>
-      <span class="result">Result : {{result}}</span>
+    <div class="left-panel"></div>
+    <div class="right-panel">
+      <app-chord-diagram v-if="results[0]" :result="results[0]"
+                        :currentPage="'find-chord-name'" class="result-ctn"
+                        ref="diagram"/>
+      <div class="right-part">
+        <button @click="findName">Find name</button>
+        <span class="result">Result : {{result}}</span>
+      </div>
     </div>
   </div>
 </template>

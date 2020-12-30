@@ -12,6 +12,7 @@
   "dependencies": {
     "element-ui": "^2.3.7",
     "gsap": "^3.5.1",
+    "howler": "^2.2.0",
     "jQuery": "^1.7.4",
     "jsdom": "^14.0.0",
     "location": "0.0.1",

@@ -1,6 +1,5 @@
 <template>
   <div class="main">
-      <!-- <router-view></router-view> -->
       <div class="left-panel">
          <app-chord-selects @searchChord="searchChord" class="selects-ctn" ref="chordSelects"/>
       </div>

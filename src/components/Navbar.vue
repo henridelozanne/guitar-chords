@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="branding">
       <router-link to="/" class="branding-plain">
-        <div>Guitar Chords</div>
+        <div>Guitar Chord Charts</div>
       </router-link>
     </div>
     <app-menu></app-menu>
@@ -32,7 +32,7 @@ export default {
 }
 
 .branding {
-  flex-basis: 330px;
+  min-width: 430px;
   font-family: 'Tomato Soup';
   font-size: 70px;
   display: flex;
